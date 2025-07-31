@@ -21,14 +21,15 @@
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
 var map = L.map('map').setView([19.4326, -99.133], 13);
-	L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-	attribution: '© OpenStreetMap contributors' // Muestra el crédito obligatorio
-	}).addTo(map);
-	L.marker([19.4326, -99.1332]).addTo(map)
- 	  .bindPopup('Centro de la CDMX')
- 	  .openPopup();
-	L.marker([19.3467, -99.1617]).addTo(map)
- 	  .bindPopup('Coyoacán');
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '© OpenStreetMap contributors' // Muestra el crédito obligatorio
+}).addTo(map);
+L.marker([19.4326, -99.1332]).addTo(map)
+.bindPopup('Centro de la CDMX')
+ .openPopup();
+L.marker([19.3467, -99.1617]).addTo(map)
+ .bindPopup('Coyoacán');
+	
 // Define la capa vacia para alcadias	
 var alcaldiasLayer = L.geoJSON(null, { 
  style: {
@@ -42,17 +43,20 @@ onEachfeature: function (feature, layer) {
  }
 }
 });
+	
 // cargar el archivo GeoJSON ( debe estar en la misma carpeta o cambiar la ruta)	
-	 fetch('alcaldias.geojson')
+ fetch('alcaldias.geojson')
     .then(response => response.json())
     .then(data => {
       alcaldiasLayer.addData(data);
   });
+	
 // Agregar control de capas para encender/apagar	
 var overlatmaps = { 
  "Alcaldías CDM": alcaldiasLayer
 };
 L.control.Layers(null, overlaymaps).addTo(map);
+	
 </script>
 </body>
 </html>
