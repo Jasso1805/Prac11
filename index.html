@@ -29,6 +29,7 @@
  	  .openPopup();
 	L.marker([19.3467, -99.1617]).addTo(map)
  	  .bindPopup('Coyoacán');
+// Define la capa vacia para alcadias	
 var alcaldiasLayer = L.geoJSON(null, { 
  style: {
  color:'blue',
@@ -42,11 +43,13 @@ onEachfeature: function (feature, layer) {
    }
  }
 });
+// cargar el archivo GeoJSON ( debe estar en la misma carpeta o cambiar la ruta)	
 	 fetch('alcaldias.geojson')
     .then(response => response.json())
     .then(data => {
       alcaldiasLayer.addData(data);
   });
+// Agregar control de capas para encender/apagar	
 var overlatmaps = { 
  "Alcaldías CDM": alcaldiasLayer
 };
