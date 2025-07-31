@@ -47,10 +47,10 @@ onEachfeature: function (feature, layer) {
     .then(data => {
       alcaldiasLayer.addData(data);
   });
-	var overlatmaps = { 
-		"Alcaldías CDM": alcaldiasLayer
-	};
-	L.control.Layers(null, overlaymaps).addTo(map);
+var overlatmaps = { 
+ "Alcaldías CDM": alcaldiasLayer
+};
+L.control.Layers(null, overlaymaps).addTo(map);
 </script>
 </body>
 </html>
