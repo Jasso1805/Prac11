@@ -29,6 +29,28 @@
  	  .openPopup();
 	L.marker([19.3467, -99.1617]).addTo(map)
  	  .bindPopup('Coyoacán');
+	var alcaldiasLayer = L.geoJSON(null, { 
+		style: {
+			color:'blue',
+			weight: 2,
+			fillOpacity: 0.1
+		},
+		
+onEachfeature: function (feature, layer) {
+	if (feature.properties && feature.properties.NOMGEO) { 
+		layer.bindpopup('Alcaldía: ' + feature.properties.NOMGEO);
+	}
+}
+	})
+	 fetch('alcaldias.geojson')
+    .then(response => response.json())
+    .then(data => {
+      alcaldiasLayer.addData(data);
+  });
+	var overlatmaps = { 
+		"Alcaldías CDM": alcaldiasLayer
+	};
+	L.control.Layers(null, overlaymaps).addTo(map);
 </script>
 </body>
 </html>
